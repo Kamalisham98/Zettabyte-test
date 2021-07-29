@@ -1,7 +1,7 @@
 require('dotenv').config({
 	path: `${process.env.NODE_ENV}.env`,
 });
-// console.log(process.env.MONGO_URI)
+
 const express = require('express');
 
 const mongoSanitize = require('express-mongo-sanitize');
@@ -34,7 +34,7 @@ app.use(mongoSanitize());
 app.use(hpp());
 
 // Set static file directory
-app.use(express.static('public'));
+// app.use(express.static('public'));
 
 // Use helmet
 app.use(
@@ -64,10 +64,7 @@ if (process.env.NODE_ENV === 'development') {
 app.use('/article', articleRoutes);
 app.use('/comment', commentRoutes);
 
-// if (process.env.NODE_ENV !== 'test') {
-// 	// Running server
-// 	app.listen(3000, () => console.log('Server running on 3000'));
-// }
+
 
 mongooseConnect
 	.then((res) => {

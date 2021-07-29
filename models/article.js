@@ -28,13 +28,7 @@ const ArticleSchema = new mongoose.Schema(
                 ref:"comment"
             }
         ]
-        // poster: {
-        // 	type: String,
-        // 	default: null,
-        // 	required: true,
-        // 	get: getImage, //link
-        // },
-
+ 
 	},
 	{
 		timestamps: {
