@@ -13,7 +13,7 @@ const morgan = require('morgan');
 const {mongooseConnect} = require('./models');
 
 const articleRoutes = require('./routes/articleRoutes');
-const commentRoutes = require('./routes/articleRoutes');
+const commentRoutes = require('./routes/commentRoutes');
 
 //
 const app = express();

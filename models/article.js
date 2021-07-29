@@ -24,7 +24,7 @@ const ArticleSchema = new mongoose.Schema(
 		},
         comment:[
             {
-                type:mongoose.SchemaTypes.ObjectId,
+                type:mongoose.Schema.Types.ObjectId,
                 ref:"comment"
             }
         ]

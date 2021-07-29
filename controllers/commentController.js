@@ -9,10 +9,15 @@ class commentController {
         comment: req.body.comment,
       };
       let data = await comment.create(created);
-      return res.status(200).json({
-        message: "success",
-        data,
-      });
+      let addComment = await article.findByIdAndUpdate(
+          req.params.id,
+          {$push:{comment:data._id}},
+          {new:true, useFindAndModify:false}
+          )
+          return res.status(200).json({
+            message: "success",
+            data,
+          });
     } catch (e) {
       return res.status(500).json({
         message: "Internal Server Error Catch",

@@ -24,8 +24,10 @@ class ArticleController {
   }
   async findArticle(req, res) {
     try {
-        console.log("HERE!!")
-      let articleData = await article.findOne({ _id: req.params.id });
+      console.log("HERE!!");
+      let articleData = await (
+        await article.findOne({ _id: req.params.id })
+      ).populate("comment");
       if (!articleData) {
         return res.status(404).json({
           message: "Article not found",
@@ -46,13 +48,11 @@ class ArticleController {
     try {
       let errors = [];
 
-      let articleData = await article.find();
+      let articleData = await article.find().populate("comment");
       return res.status(200).json({
         message: "sucess",
         articleData,
       });
-
-
     } catch (e) {
       return res.status(500).json({
         message: "Internal Server Error find",
