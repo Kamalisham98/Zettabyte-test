@@ -10,14 +10,14 @@ class commentController {
       };
       let data = await comment.create(created);
       let addComment = await article.findByIdAndUpdate(
-          req.params.id,
-          {$push:{comment:data._id}},
-          {new:true, useFindAndModify:false}
-          )
-          return res.status(200).json({
-            message: "success",
-            data,
-          });
+        req.params.id,
+        { $push: { comment: data } },
+        { new: true, useFindAndModify: false }
+      );
+      return res.status(200).json({
+        message: "success",
+        data,
+      });
     } catch (e) {
       return res.status(500).json({
         message: "Internal Server Error Catch",
@@ -27,7 +27,7 @@ class commentController {
   }
   async findcomment(req, res) {
     try {
-        console.log("HERE!!")
+      console.log("HERE!!");
       let commentData = await comment.findOne({ _id: req.params.id });
       if (!commentData) {
         return res.status(404).json({
@@ -54,8 +54,6 @@ class commentController {
         message: "sucess",
         commentData,
       });
-
-
     } catch (e) {
       return res.status(500).json({
         message: "Internal Server Error find",
@@ -85,6 +83,12 @@ class commentController {
     try {
       let deleted = await comment.deleteOne({ _id: req.params.id });
       if (deleted.deletedCount === 0) {
+        console.log(req.params.id)
+         await article.findOneAndUpdate(
+          req.params.id,
+          { $pullAll: { comment: req.params.id } },
+          { new: true, useFindAndModify: false }
+        );
         return res.status(404).json({
           message: "Data Not Found",
         });
