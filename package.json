@@ -1,0 +1,36 @@
+{
+  "name": "zettabyte-test",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "NODE_ENV=development nodemon index.js",
+    "stop": "NODE_ENV=production forever stop index.js || true",
+    "start": "NODE_ENV=production forever start index.js",
+    "test": "cross-env NODE_ENV=test jest --testTimeout=10000 --coverage --forceExit"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Kamalisham98/Zettabyte-test.git"
+  },
+  "author": "Kamal",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Kamalisham98/Zettabyte-test/issues"
+  },
+  "homepage": "https://github.com/Kamalisham98/Zettabyte-test#readme",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "cors": "^2.8.5",
+    "dotenv": "^10.0.0",
+    "express": "^4.17.1",
+    "express-mongo-sanitize": "^2.1.0",
+    "express-validator": "^6.12.1",
+    "fileupload": "^1.0.0",
+    "helmet": "^4.6.0",
+    "hpp": "^0.2.3",
+    "mongoose": "^5.13.4",
+    "mongoose-delete": "^0.5.3",
+    "morgan": "^1.10.0"
+  }
+}
