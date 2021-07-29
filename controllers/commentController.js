@@ -84,9 +84,9 @@ class commentController {
       let deleted = await comment.deleteOne({ _id: req.params.id });
       if (deleted.deletedCount === 0) {
         console.log(req.params.id)
-         await article.findOneAndUpdate(
+         await article.update(
           req.params.id,
-          { $pullAll: { comment: req.params.id } },
+          { $pull: { comment: {_Id:req.params.id} } },
           { new: true, useFindAndModify: false }
         );
         return res.status(404).json({
